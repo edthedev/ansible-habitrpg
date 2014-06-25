@@ -2,18 +2,17 @@
 - hosts: all
   user: vagrant
   gather_facts: False
-  sudo: no
+  sudo: yes
   vars:
     - root_dir: /home/vagrant
     - habit_repo: git@github.com:edthedev/habitrpg.git
     - app_root: "{{ root_dir }}/habitrpg"
   tasks:
-    - include: node.yml
     - name: system
       apt: name={{ item }}
       with_items:
         - git
-        - nodejs
+    - include: node.yml
     - name: clone
       git: repo={{ habit_repo }} dest={{ root_dir }}
     - name: grunt
