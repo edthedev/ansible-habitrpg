@@ -1,0 +1,17 @@
+---
+vars:
+ - node_repo: https://github.com/joyent/node.git 
+ - checkout_to: /tmp/nodejs
+tasks:
+  - name: system
+    apt: name={{ item }}
+    with_items:
+      - git
+  - name: clone
+    git: repo={{ node_repo }} dest={{ checkout_to }}
+  - name: branch
+    shell: "cd {{ checkout_to }}; git checkout v0.6.8"
+  - name: configure
+    shell: "cd {{ checkout_to }}; ./configure --openssl-libpath=/usr/lib/ssl"
+  - name: install
+    shell: "cd {{ checkout_to }}; sudo make install"
