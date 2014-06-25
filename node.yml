@@ -5,8 +5,9 @@
     - git
     - g++
     - make
+    - build-essential
 - name: clone
-  git: repo=https://github.com/joyent/node.git dest=/tmp/node version=v0.6.8 creates=/tmp/node/configure
+  git: repo=https://github.com/joyent/node.git dest=/tmp/node version=v0.6.8 
 #- name: branch
 #  shell: "cd /tmp/nodejs git checkout v0.6.8"
 - name: configure

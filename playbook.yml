@@ -1,4 +1,5 @@
 ---
+TODO: Switch to Ubuntu, where nodejs is a package.
 - hosts: all
   user: vagrant
   gather_facts: False
