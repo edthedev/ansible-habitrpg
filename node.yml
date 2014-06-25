@@ -3,10 +3,10 @@
   apt: name={{ item }}
   with_items:
     - git
-    - gcc
+    - g++
     - make
 - name: clone
-  git: repo=https://github.com/joyent/node.git dest=/tmp/node version=v0.6.8
+  git: repo=https://github.com/joyent/node.git dest=/tmp/node version=v0.6.8 creates=/tmp/node/configure
 #- name: branch
 #  shell: "cd /tmp/nodejs git checkout v0.6.8"
 - name: configure
