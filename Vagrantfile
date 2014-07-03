@@ -8,7 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # config.vm.box = "chef/centos-6.5"
   config.vm.box = "chef/debian-7.4"
-  # config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 80, host: 8080
 
   #config.vm.provider "virtualbox" do |v|
     # v.memory = 4096
