@@ -1,5 +1,4 @@
 ---
-TODO: Switch to Ubuntu, where nodejs is a package.
 - hosts: all
   user: vagrant
   gather_facts: False
@@ -12,7 +11,7 @@ TODO: Switch to Ubuntu, where nodejs is a package.
     - name: system
       apt: name={{ item }}
       with_items:
-        - git
+        - git-core
     - include: node.yml
     - name: clone
       git: repo={{ habit_repo }} dest={{ root_dir }}
