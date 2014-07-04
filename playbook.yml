@@ -5,7 +5,7 @@
   sudo: yes
   vars:
     - root_dir: /home/vagrant
-    - habit_repo: git@github.com:edthedev/habitrpg.git
+    - habit_repo: https://github.com/edthedev/habitrpg.git
     - app_root: "{{ root_dir }}/habitrpg"
   tasks:
     - name: unsuck apt
@@ -17,7 +17,9 @@
         - libssl-dev
         - nodejs
     - name: clone
-      git: repo={{ habit_repo }} dest={{ root_dir }} update=no
+      git: repo={{ habit_repo }} dest={{ app_root }} update=no accept_hostkey=True
+    - name: npm
+      shell: curl https://www.npmjs.org/install.sh | sudo sh
     - name: grunt
       npm: name={{ item }} global=yes
       sudo: yes
