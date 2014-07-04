@@ -7,7 +7,8 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # config.vm.box = "chef/centos-6.5"
-  config.vm.box = "chef/debian-7.4"
+  # config.vm.box = "chef/debian-7.4"
+  config.vm.box = "hashicorp/precise32"
   config.vm.network :forwarded_port, guest: 80, host: 8080
 
   #config.vm.provider "virtualbox" do |v|
@@ -19,8 +20,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.playbook = "playbook.yml"
     ansible.verbose = 'vvv'
 # For debugging
-    ansible.start_at_task = 'grunt'
-# ansible.start_at_task = 'config apache'
+    ansible.start_at_task = 'system'
+#    ansible.start_at_task = 'grunt'
   end
 
 end
