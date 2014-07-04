@@ -17,9 +17,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbook.yml"
-    ansible.verbose = 'vv'
+    ansible.verbose = 'vvv'
 # For debugging
-# ansible.start_at_task = 'git prereqs'
+    ansible.start_at_task = 'grunt'
 # ansible.start_at_task = 'config apache'
   end
 
