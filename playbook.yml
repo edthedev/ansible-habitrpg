@@ -8,9 +8,18 @@
     - habit_repo: https://github.com/edthedev/habitrpg.git
     - app_root: "{{ root_dir }}/habitrpg"
   tasks:
+    - name: apt-add-repository
+      apt: name={{ item }}
+      with_items:
+        - python-software-properties
+        - python
+        - g++
+        - make
+    - name: latest node repo
+      shell: sudo add-apt-repository ppa:chris-lea/node.js creates="{{ root_dir }}/.added_node_repo"
     - name: unsuck apt
       shell: apt-get update
-    - name: system
+    - name: required
       apt: name={{ item }}
       with_items:
         - git-core
