@@ -29,10 +29,12 @@
     - name: clone
       git: repo={{ habit_repo }} dest={{ app_root }} update=no accept_hostkey=True
     - name: grunt
-      npm: name={{ item }} global=yes
-      sudo: yes
+      npm: name={{ item }} global=no
+      npm: path={{ app_root }}
+      sudo: no
       with_items: 
         - grunt-cli
         - bower
-    - name: deps
-      npm: path={{ app_root }}
+#ji    - name: deps
+  #    npm: path={{ app_root }} global=no
+  #    sudo: no
