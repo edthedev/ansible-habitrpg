@@ -1,6 +1,7 @@
 ---
-- name: system
+- name: apt for node
   apt: name={{ item }}
+  sudo: yes
   with_items:
     - git
     - g++
@@ -8,9 +9,12 @@
     - build-essential
 - name: clone
   git: repo=https://github.com/joyent/node.git dest=/tmp/node version=v0.6.8 
-#- name: branch
-#  shell: "cd /tmp/nodejs git checkout v0.6.8"
+  sudo: no
+- name: branch
+  shell: "cd /tmp/nodejs git checkout v0.10.4"
 - name: configure
   shell: "cd /tmp/node; ./configure --openssl-libpath=/usr/lib/ssl"
+  sudo: yes
 - name: install
   shell: "cd /tmp/node; sudo make install"
+  sudo: yes

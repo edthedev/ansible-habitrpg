@@ -8,30 +8,34 @@
     - habit_repo: https://github.com/edthedev/habitrpg.git
     - app_root: "{{ root_dir }}/habitrpg"
   tasks:
-    - name: apt-add-repository
-      apt: name={{ item }}
-      with_items:
-        - python-software-properties
-        - python
-        - g++
-        - make
-    - name: latest node
-      apt_repository: state=present repo="deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu precise main" 
-    - name: unsuck apt
-      shell: apt-get update
-    - name: required
+#    - name: apt-add-repository
+#      apt: name={{ item }}
+#      with_items:
+#        - python-software-properties
+#j        - python
+ #       - g++
+ #       - make
+#    - name: latest node
+#      apt_repository: state=present repo="deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu precise main" 
+    #- name: unsuck apt
+    #  shell: apt-get update
+    - name: apt for habitrpg
       apt: name={{ item }}
       with_items:
         - git-core
         - libssl-dev
-        - nodejs
-        - npm
+#        - nodejs
+#        - npm
+    - include: node.yml
     - name: clone
       git: repo={{ habit_repo }} dest={{ app_root }} update=no accept_hostkey=True
       sudo: no
     - name: node registry
       shell: npm config set registry http://registry.npmjs.org/
       sudo: no
+    #- name: latest npm
+    #  shell: npm -g install npm
+    #  sudo: yes
     - name: grunt
       npm: name={{ item }} global=no
       npm: path={{ app_root }}
@@ -39,6 +43,3 @@
       with_items: 
         - grunt-cli
         - bower
-#ji    - name: deps
-  #    npm: path={{ app_root }} global=no
-  #    sudo: no
