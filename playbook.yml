@@ -15,8 +15,8 @@
         - python
         - g++
         - make
-    - name: latest node repo
-      shell: sudo add-apt-repository ppa:chris-lea/node.js creates="{{ root_dir }}/.added_node_repo"
+    - name: latest node
+      apt_repository: state=present repo="deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu precise main" 
     - name: unsuck apt
       shell: apt-get update
     - name: required

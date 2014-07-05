@@ -21,7 +21,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.verbose = 'vvv'
 # For debugging
    # ansible.start_at_task = 'system'
-#    ansible.start_at_task = 'grunt'
+    ansible.start_at_task = 'latest node'
+    #ansible.start_at_task = 'grunt'
   end
 
 end
