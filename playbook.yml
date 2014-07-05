@@ -28,6 +28,10 @@
         - npm
     - name: clone
       git: repo={{ habit_repo }} dest={{ app_root }} update=no accept_hostkey=True
+      sudo: no
+    - name: node registry
+      shell: npm config set registry http://registry.npmjs.org/
+      sudo: no
     - name: grunt
       npm: name={{ item }} global=no
       npm: path={{ app_root }}
