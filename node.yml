@@ -7,14 +7,18 @@
     - g++
     - make
     - build-essential
+- name: cleanup
+  shell: rm -rf /tmp/node
+  sudo: yes
 - name: clone
   git: repo=https://github.com/joyent/node.git dest=/tmp/node version=v0.6.8 
   sudo: no
 - name: branch
   shell: "cd /tmp/node git checkout v0.10.4"
+  sudo: no
 - name: configure
   shell: "cd /tmp/node; ./configure --openssl-libpath=/usr/lib/ssl"
-  sudo: yes
+  sudo: no 
 - name: install
-  shell: "cd /tmp/node; sudo make install"
+  shell: "cd /tmp/node; make install"
   sudo: yes
